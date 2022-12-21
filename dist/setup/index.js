@@ -6585,7 +6585,7 @@ const crypto_1 = __nccwpck_require__(6113);
 const fs_1 = __nccwpck_require__(7147);
 const path = __importStar(__nccwpck_require__(1017));
 // Todo: make this input
-const KNOWN_STABLE_VERSION = "0.3.3";
+const KNOWN_STABLE_VERSION = "0.3.1";
 const TOOL_NAME = "sccache";
 // https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#get-the-latest-release
 const SCCACHE_RELEASES = "https://api.github.com/repos/mozilla/sccache/releases";
@@ -6634,7 +6634,7 @@ function getLatestRelease(latest) {
             throw new Error(`Error getting latest release: ${res.message.statusCode} ${res.message.statusMessage}`);
         }
         const { tag_name, assets, } = JSON.parse(yield res.readBody());
-        if (assets.length === 0) {
+        if (assets.length > 0) {
             core.warning(`Cannot find any prebuilt binaries for version ${tag_name}, falling back to known stable version ${KNOWN_STABLE_VERSION}`);
             return yield getLatestRelease(false);
         }

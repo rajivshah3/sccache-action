@@ -8,7 +8,7 @@ import { promises as fs } from "fs";
 import * as path from "path";
 
 // Todo: make this input
-const KNOWN_STABLE_VERSION = "0.3.3";
+const KNOWN_STABLE_VERSION = "0.3.1";
 const TOOL_NAME = "sccache";
 // https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#get-the-latest-release
 const SCCACHE_RELEASES =
@@ -78,7 +78,7 @@ async function getLatestRelease(latest?: boolean): Promise<string> {
     assets,
   }: Endpoints["GET /repos/{owner}/{repo}/releases/latest"]["response"]["data"] =
     JSON.parse(await res.readBody());
-  if (assets.length === 0) {
+  if (assets.length > 0) {
     core.warning(
       `Cannot find any prebuilt binaries for version ${tag_name}, falling back to known stable version ${KNOWN_STABLE_VERSION}`
     );
