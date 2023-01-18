@@ -8,7 +8,7 @@ import { promises as fs } from "fs";
 import * as path from "path";
 
 // Todo: make this input
-const KNOWN_STABLE_VERSION = "0.3.3";
+const KNOWN_STABLE_VERSION = "v0.4.0-pre.6";
 const TOOL_NAME = "sccache";
 // https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#get-the-latest-release
 const SCCACHE_RELEASES =
@@ -95,7 +95,7 @@ async function getDownloadUrl(): Promise<string> {
     // sccache does not provide prebuilt binaries for arm64 Windows
     throw new Error(`Unsupported platform: ${process.platform}`);
   }
-  const version = await getLatestRelease();
+  const version = await getLatestRelease(false);
   const assetName = `sccache-${version}-${arch}-${platform}.tar.gz`;
   return `https://github.com/mozilla/sccache/releases/download/${version}/${assetName}`;
 }
@@ -163,7 +163,7 @@ async function guardedRun(): Promise<void> {
     );
   }
   // The tag name is prefixed with a "v" so we need to remove that
-  const version = (await getLatestRelease()).substring(1);
+  const version = (await getLatestRelease(false)).substring(1);
   core.debug(`Trying to find cached sccache ${version} ;)`);
   const sccacheDirectory = find(TOOL_NAME, version, process.platform);
   if (sccacheDirectory) {

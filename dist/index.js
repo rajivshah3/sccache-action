@@ -47,7 +47,7 @@ const crypto_1 = __nccwpck_require__(6113);
 const fs_1 = __nccwpck_require__(7147);
 const path = __importStar(__nccwpck_require__(1017));
 // Todo: make this input
-const KNOWN_STABLE_VERSION = "0.3.3";
+const KNOWN_STABLE_VERSION = "v0.4.0-pre.6";
 const TOOL_NAME = "sccache";
 // https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#get-the-latest-release
 const SCCACHE_RELEASES = "https://api.github.com/repos/mozilla/sccache/releases";
@@ -111,7 +111,7 @@ function getDownloadUrl() {
             // sccache does not provide prebuilt binaries for arm64 Windows
             throw new Error(`Unsupported platform: ${process.platform}`);
         }
-        const version = yield getLatestRelease();
+        const version = yield getLatestRelease(false);
         const assetName = `sccache-${version}-${arch}-${platform}.tar.gz`;
         return `https://github.com/mozilla/sccache/releases/download/${version}/${assetName}`;
     });
@@ -177,7 +177,7 @@ function guardedRun() {
             core.warning("Using a GitHub API token is strongly recommended to avoid issues with rate limiting");
         }
         // The tag name is prefixed with a "v" so we need to remove that
-        const version = (yield getLatestRelease()).substring(1);
+        const version = (yield getLatestRelease(false)).substring(1);
         core.debug(`Trying to find cached sccache ${version} ;)`);
         const sccacheDirectory = (0, tool_cache_1.find)(TOOL_NAME, version, process.platform);
         if (sccacheDirectory) {
