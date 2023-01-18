@@ -161,6 +161,7 @@ function setCache(sccacheDirectory) {
         }
         core.exportVariable("ACTIONS_CACHE_URL", process.env.ACTIONS_CACHE_URL);
         core.exportVariable("ACTIONS_RUNTIME_TOKEN", process.env.ACTIONS_RUNTIME_TOKEN);
+        core.exportVariable("SCCACHE_GHA_ENABLED", "on");
         // //todo: make this input
         // core.exportVariable("SCCACHE_GHA_CACHE_TO", "sccache-latest");
         // core.exportVariable("SCCACHE_GHA_CACHE_FROM", "sccache-");
