@@ -8,7 +8,7 @@ import { promises as fs } from "fs";
 import * as path from "path";
 
 // Todo: make this input
-const KNOWN_STABLE_VERSION = "v0.4.0-pre.6";
+const KNOWN_STABLE_VERSION = "0.4.0-pre.6";
 const TOOL_NAME = "sccache";
 // https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#get-the-latest-release
 const SCCACHE_RELEASES =

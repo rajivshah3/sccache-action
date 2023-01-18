@@ -47,7 +47,7 @@ const crypto_1 = __nccwpck_require__(6113);
 const fs_1 = __nccwpck_require__(7147);
 const path = __importStar(__nccwpck_require__(1017));
 // Todo: make this input
-const KNOWN_STABLE_VERSION = "v0.4.0-pre.6";
+const KNOWN_STABLE_VERSION = "0.4.0-pre.6";
 const TOOL_NAME = "sccache";
 // https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#get-the-latest-release
 const SCCACHE_RELEASES = "https://api.github.com/repos/mozilla/sccache/releases";
