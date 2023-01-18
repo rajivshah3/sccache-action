@@ -146,9 +146,9 @@ async function setCache(sccacheDirectory: string): Promise<void> {
     "ACTIONS_RUNTIME_TOKEN",
     process.env.ACTIONS_RUNTIME_TOKEN
   );
-  //todo: make this input
-  core.exportVariable("SCCACHE_GHA_CACHE_TO", "sccache-latest");
-  core.exportVariable("SCCACHE_GHA_CACHE_FROM", "sccache-");
+  // //todo: make this input
+  // core.exportVariable("SCCACHE_GHA_CACHE_TO", "sccache-latest");
+  // core.exportVariable("SCCACHE_GHA_CACHE_FROM", "sccache-");
   core.addPath(sccacheDirectory);
   exec("sccache", ["--start-server"]);
   core.debug("Configured sccache!");
